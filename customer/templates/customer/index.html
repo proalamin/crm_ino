@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EdTech CRM</title>
+    <link rel="stylesheet" href="{% static 'customer/css/style.css' %}">
+</head>
+<body>
+
+    <h1>New Students:</h1>
+
+    <form id="studentForm">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="phone" placeholder="Phone" required>
+
+        <h3>Education</h3>
+        <input type="text" id="degree" placeholder="Degree" required>
+        <input type="text" id="institution" placeholder="Institution" required>
+        <input type="number" id="passing_year" placeholder="Passing Year" required>
+        <input type="text" id="result" placeholder="Result" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="{% static 'customer/js/app.js' %}"></script>
+
+</body>
+</html>

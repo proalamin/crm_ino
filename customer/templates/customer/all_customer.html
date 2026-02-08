@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Students</title>
+    <link rel="stylesheet" href="{% static 'customer/css/style.css' %}">
+</head>
+<body>
+
+    <h1>All Students</h1>
+
+    <div id="studentList"></div>
+
+    <script>
+        fetch("/api/students/")
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById("studentList");
+
+            data.forEach(student => {
+                const div = document.createElement("div");
+                div.style.border = "1px solid gray";
+                div.style.padding = "10px";
+                div.style.margin = "10px 0";
+
+                let educationsHTML = "";
+
+                student.educations.forEach(edu => {
+                    educationsHTML += `
+                        <li>
+                            ${edu.degree} - ${edu.institution_name}
+                            (${edu.passing_year}) | Result: ${edu.result}
+                        </li>
+                    `;
+                });
+
+                div.innerHTML = `
+                    <h3>${student.name}</h3>
+                    <p>Email: ${student.email}</p>
+                    <p>Phone: ${student.phone}</p>
+                    <strong>Education:</strong>
+                    <ul>${educationsHTML}</ul>
+                `;
+
+                container.appendChild(div);
+            });
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    </script>
+
+</body>
+</html>
